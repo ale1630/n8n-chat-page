@@ -1,0 +1,49 @@
+<!-- chat.html -->
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assistente AI</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: sans-serif;
+            background: #f7f7f7;
+        }
+    </style>
+</head>
+
+<body>
+    <script type="module">
+        import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+        createChat({
+            webhookUrl: 'http://192.168.1.108:5678/webhook/9a73a111-bf4b-4e55-a750-df6497a7d149',
+            webhookConfig: {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            },
+            chatInputPlaceholder: 'Scrivi qui...',
+            chatSessionKey: 'n8n-session-' + Date.now(),
+            defaultLanguage: 'it',
+            initialMessages: [
+                { text: 'Ciao! 👋 Sono il tuo assistente AI.', sender: 'bot' },
+                { text: '🍽️ Ricette\n📅 Menu\n🛒 Spesa\nCosa vuoi sapere?', sender: 'bot' }
+            ],
+            theme: {
+                primaryColor: '#667eea',
+                textColor: '#333',
+                backgroundColor: '#fff'
+            }
+        }, document.body);
+    </script>
+</body>
+
+</html>
